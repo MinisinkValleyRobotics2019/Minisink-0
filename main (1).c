@@ -1,46 +1,97 @@
 #include <kipr/botball.h>
-void start_up();
-void turn_oc();
-void back();
+
+void Fwd();
+void Bwd();
+void Stop();
+void Left();
+void Right();
+void ClawOpen();
+void ClawClose();
+void ClawPush();
+void ClawMiddle();
+
+int counter();
 
 int main()
 {
-    start_up();
-    set_servo_position(0,0); // close claw
+    
+    enable_servos();
+    
+    Fwd();
+    msleep(1000);
+    Left();
+    Fwd();
     msleep(2000);
-    motor(0,-45);
-    motor(1,60);
-    msleep(1700); // go forward
-    turn_oc(); // turn on center
-    return 0;
-    set_servo_position(0,450);// open claw
-    motor(0,-45);//go forward
-    motor(1,60);
-    msleep(1700);
-    set_servo_position(0,0);//close the claw around the people 
-    back();//go backwards   
+    Right();
+    ClawOpen();
+    Fwd();
+    msleep(2750);
+    Right();
+    ClawPush();
+    Fwd();
+    msleep(7250);
+    Stop();
+    msleep(750);
+    ClawMiddle();
+    msleep(1500);
+    Right();
+    Fwd();
+    msleep(200);
+    Right();
+    Fwd();
+    msleep(3500);
+    Left();
+    Fwd();
+    msleep(2250);
     
-  
+    
     return 0;
+    
+    ao();
+    
 }
 
-void start_up(){
-	enable_servos();
-	shut_down_in(180000); //shut down in 3 minutes
+void Fwd(){
+	motor(0,85);
+    motor(1,60);
 }
-
-void turn_oc(){ // turn on center
-    motor(0,-60);
+void Bwd(){
+	motor(0,-85);
     motor(1,-60);
-    msleep(800);
+}
+void Stop(){
+	motor(0,0);
+    motor(1,0);
+}
+void Left(){
+	motor(0,-85);
+    motor(1,60);
+    msleep(750);
+}
+void Right(){
+	motor(0,56.6);
+    motor(1,-40);
+    msleep(975);
+}
+void ClawClose(){
+    set_servo_position(0,0);
+}
+void ClawPush(){
+    set_servo_position(0,1050);
+}
+void ClawMiddle(){
+    int counter = 1050;
+	set_servo_position(0,counter);
+    	while(counter>300){
+            msleep(100);
+            counter = counter - 100;
+            set_servo_position(0, counter);
+        }
+}
+void ClawOpen(){
+	set_servo_position(0,1750);
 }
 
-void back(){ //go backwards
-	motor(0,45);
-	motor(1,-60);
-	msleep(2300);
-}
-    
     
     
     
