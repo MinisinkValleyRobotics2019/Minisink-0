@@ -15,13 +15,16 @@ int main()
     
     goForward(4000);
     TurnRight(1300);
-    goForward(6300);
-    TurnLeft(1300);
+    goForward(6400);
+    TurnLeft(1350);
     
     goBack(2300);
     
     goForward(1000);
     TurnLeft(1300);
+    goForward(3000);
+    TurnRight(1350);
+    goForward(1500);
     
     //goForward(3000);
     //TurnRight(1000);
