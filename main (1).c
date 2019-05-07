@@ -9,7 +9,7 @@ void ClawOpen();
 void ClawClose();
 void ClawPush();
 void ClawMiddle();
-
+void TurnAround();
 int counter();
 
 int main()
@@ -41,6 +41,7 @@ int main()
     Fwd();
     msleep(3500);
     Left();
+    TurnAround();
     Fwd();
     msleep(2250);
     
@@ -93,5 +94,9 @@ void ClawOpen(){
 }
 
     
-    
+void TurnAround(){
+		motor(0,56.6);
+    motor(1,-40);
+    msleep(1800);
+}
     
