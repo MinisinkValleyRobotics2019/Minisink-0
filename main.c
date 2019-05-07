@@ -1,67 +1,58 @@
 #include <kipr/botball.h>
-void colorSee();
-void startUp();
-void blueLineTime();
-int channel = 0;
-int x = 1;
-//variable for blueLineTime
+void goForward(int t);
+void goBack(int t);
+void TurnLeft(int t);
+void TurnRight(int t);
+void start_up();
+//to turn 90 degrees use msleep 1300
 
 int main()
 {
-    startUp();
-    set_servo_position(0,1700);
-        msleep(1000);
-    set_servo_position(0,600);
-    motor(0,50);
-    motor(1,-50);
-    msleep(1500);
-    colorSee(0);
-    set_servo_position(0,600);
-    msleep(1000);
-    motor(1,10);
-    motor(0,-50);
-    msleep(4200);
-    set_servo_position(0,1700);
-    motor(0,50);
-    motor(1,-50);
-    msleep(550);
-
-   // blueLineTime();
-	//motor_power(0, 5000);
-   // set_servo_position(0, 1500);
-    //msleep(1500);
+	//wait_for_light(0);
+    //forward  right forward left
+    
+    start_up();
+    
+    goForward(4000);
+    TurnRight(1300);
+    goForward(6300);
+    TurnLeft(1300);
+    
+    goBack(2300);
+    
+    goForward(1000);
+    TurnLeft(1300);
+    
+    //goForward(3000);
+    //TurnRight(1000);
+    //goForward(3000);
+    //msleep(1000);
+    
+    set_servo_position(0,1000); 
+    
     return 0;
-}
-
-void colorSee(){
-    while(x==1){  
-        camera_update();
-        if (get_object_count(channel) > 1){
-            printf("YEEEEEEEEEEE \n.");
- 
-            int x = 2;
-            break;
-        
-        }
-        else{
-            printf("Nah neet\n");
-        }    
-	}
-}
     
-void startUp(){
-	enable_servos();
-    camera_open();
-    shut_down_in(180000); //shut down in 3 minutes
     
 }
+void start_up(){
+    create_connect();
+    enable_servos();
+}
+void goForward(int t){
+    create_drive_direct(150,150);
+    msleep(t);
+}
+void TurnLeft(int t){
+    create_drive_direct(-150,150);
+    msleep(t);
+}
+void TurnRight(int t){
+    create_drive_direct(150,-150);
+    msleep(t);
+}
+void goBack(int t){
+    create_drive_direct(-150,-150);
+    msleep(t);
+}
     
-void blueLineTime(){
-    while(x==1){         
-        printf("not seeing.");
-    // forward function	 mrp(0,50,1500)        
-    }
-	
-    printf("I read le fuego!");
-}    
         
